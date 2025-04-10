@@ -46,7 +46,7 @@ const Experience: React.FC = () => {
       company: "Under Rise Games",
       period: "05/03/2021 – 10/03/2022",
       description: [
-        "Am coordonat dezvoltarea jocului „A Millionaire's Story", de la concept până la lansarea pe platforma Steam.",
+        "Am coordonat dezvoltarea jocului \"A Millionaire's Story\", de la concept până la lansarea pe platforma Steam.",
         "Am gestionat strategii de monetizare și optimizarea experienței utilizatorilor."
       ],
       icon: <Users className="text-finance-gray" size={24} />
