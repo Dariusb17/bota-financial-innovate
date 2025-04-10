@@ -24,7 +24,7 @@ interface ServiceCategory {
 const Services: React.FC = () => {
   const [activeTab, setActiveTab] = useState("consultanta");
   const sectionRef = useRef<HTMLDivElement>(null);
-  const cardsRef = useRef<HTMLDivElement>(null);
+  const cardsRef = useRef<HTMLDivElement[]>([]);
   
   const servicesData: ServiceCategory[] = [
     {
@@ -117,16 +117,6 @@ const Services: React.FC = () => {
           if (entry.isIntersecting) {
             entry.target.classList.add('opacity-100', 'translate-y-0');
             entry.target.classList.remove('opacity-0', 'translate-y-20');
-            
-            if (entry.target === cardsRef.current) {
-              const cards = entry.target.querySelectorAll('.service-card');
-              cards.forEach((card, index) => {
-                setTimeout(() => {
-                  card.classList.add('opacity-100', 'translate-y-0');
-                  card.classList.remove('opacity-0', 'translate-y-10');
-                }, index * 100);
-              });
-            }
           }
         });
       },
@@ -134,9 +124,28 @@ const Services: React.FC = () => {
     );
     
     if (sectionRef.current) observer.observe(sectionRef.current);
-    if (cardsRef.current) observer.observe(cardsRef.current);
     
+    // Clean up the observer when component unmounts
     return () => observer.disconnect();
+  }, []);
+
+  // Reset animation classes when tab changes
+  useEffect(() => {
+    // Short timeout to allow the DOM to update
+    const timer = setTimeout(() => {
+      const cards = document.querySelectorAll('.service-card');
+      cards.forEach((card, index) => {
+        card.classList.add('opacity-0', 'translate-y-10');
+        card.classList.remove('opacity-100', 'translate-y-0');
+        
+        setTimeout(() => {
+          card.classList.add('opacity-100', 'translate-y-0');
+          card.classList.remove('opacity-0', 'translate-y-10');
+        }, 50 + index * 100);
+      });
+    }, 50);
+    
+    return () => clearTimeout(timer);
   }, [activeTab]);
   
   return (
@@ -174,10 +183,7 @@ const Services: React.FC = () => {
                 <p className="text-finance-gray">{category.description}</p>
               </div>
               
-              <div 
-                ref={cardsRef}
-                className="grid md:grid-cols-2 gap-6"
-              >
+              <div className="grid md:grid-cols-2 gap-6">
                 {category.services.map((service, idx) => (
                   <Card 
                     key={idx}

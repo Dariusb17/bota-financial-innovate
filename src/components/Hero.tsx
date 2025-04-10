@@ -2,6 +2,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { ChevronDown } from 'lucide-react';
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 const Hero: React.FC = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -34,9 +35,16 @@ const Hero: React.FC = () => {
         ref={heroRef}
         className="container mx-auto text-center z-10 px-4"
       >
+        <div className="mb-8 flex justify-center">
+          <Avatar className="h-48 w-48 border-4 border-white shadow-lg">
+            <AvatarImage src="/lovable-uploads/e9f668dc-2846-4915-b4e3-845f1a144b41.png" alt="Alin-Alexandru Bota" />
+            <AvatarFallback>AB</AvatarFallback>
+          </Avatar>
+        </div>
+
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight text-finance-blue">
-          <span className="block">Consultant Financiar &</span>
-          <span className="block text-finance-teal">Inovator</span>
+          <span className="block">Consultant &</span>
+          <span className="block text-finance-teal">Planificator financiar</span>
         </h1>
         <p className="text-xl md:text-2xl text-finance-gray max-w-3xl mx-auto mb-10">
           Transformăm complexitatea financiară într-o experiență accesibilă,
