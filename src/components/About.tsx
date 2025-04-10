@@ -37,11 +37,7 @@ const About: React.FC = () => {
           {/* Content */}
           <div ref={observerRef} className="lg:w-1/2 opacity-0 translate-y-10 transition-all duration-700">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-finance-blue">Despre Mine</h2>
-            <p className="text-lg mb-4 text-finance-gray">
-              Salut, sunt Alin-Alexandru Bota – consultant financiar, lider de echipă și inovator în domeniul financiar. 
-              Studiile în Computer Science la Universitatea Tehnică din Cluj-Napoca și experiența acumulată ca Team Leader/Manager 
-              la OVB Allfinanz România m-au învățat cum să transform complexitatea financiară într-o experiență accesibilă.
-            </p>
+            <p className="text-lg mb-4 text-finance-gray">Salut, sunt Alin-Alexandru Bota – consultant financiar, lider de echipă și inovator în domeniul financiar. Experiența acumulată ca Team Leader/Manager la OVB Allfinanz România, cat și studiile în Computer Science la Universitatea Tehnică din Cluj-Napoca m-au învățat cum să transform complexitatea financiară într-o experiență accesibilă.</p>
             <p className="text-lg mb-6 text-finance-gray">
               Cu o abordare personalizată și o pasiune pentru tehnologie, ajut clienții să își optimizeze investițiile și să 
               își planifice viitorul financiar.
