@@ -34,7 +34,7 @@ const Contact: React.FC = () => {
       icon: <Linkedin size={24} className="text-finance-blue" />,
       title: 'LinkedIn',
       value: 'Profilul meu LinkedIn',
-      href: 'https://linkedin.com/'
+      href: 'https://www.linkedin.com/in/alin-alexandru-bota/'
     }
   ];
   
