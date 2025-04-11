@@ -1,4 +1,3 @@
-
 import React, { useRef, useState } from 'react';
 import { Phone, Mail, Linkedin, Info } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -49,10 +48,10 @@ const Contact: React.FC = () => {
     
     // Send email using EmailJS
     emailjs.sendForm(
-      'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
-      'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
+      'service_b75w3y7', // EmailJS service ID
+      'template_qbun0ra', // EmailJS template ID
       formRef.current,
-      'YOUR_USER_ID' // Replace with your EmailJS user ID
+      'dNsPF44T9wpPQiV8_' // EmailJS user ID
     )
       .then((result) => {
         console.log('Email sent successfully:', result.text);
@@ -90,7 +89,6 @@ const Contact: React.FC = () => {
         </div>
         
         <div className="grid md:grid-cols-2 gap-12 items-start">
-          {/* Contact Form */}
           <div className="glass p-8 rounded-2xl shadow-lg">
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-2xl font-semibold text-finance-blue">Trimite un mesaj</h3>
@@ -154,7 +152,6 @@ const Contact: React.FC = () => {
             </form>
           </div>
           
-          {/* Contact Info */}
           <div className="space-y-8">
             {contactItems.map((item, index) => (
               <a 
