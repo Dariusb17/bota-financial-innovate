@@ -1,114 +1,17 @@
 
-import React, { useEffect, useRef, useState } from 'react';
-import { ChartPieIcon, BriefcaseIcon, CalculatorIcon, ShieldCheck } from 'lucide-react';
+import React, { useEffect, useRef } from 'react';
+import { CheckCircle, Target, Home, PiggyBank, Calendar, Clock, Baby, CreditCard, Wallet } from 'lucide-react';
 import { 
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-
-interface ServiceCategory {
-  id: string;
-  title: string;
-  description: string;
-  services: {
-    icon: React.ReactNode;
-    title: string;
-    description: string;
-  }[];
-}
 
 const Services: React.FC = () => {
-  const [activeTab, setActiveTab] = useState("consultanta");
   const sectionRef = useRef<HTMLDivElement>(null);
-  const cardsRef = useRef<HTMLDivElement[]>([]);
-  
-  const servicesData: ServiceCategory[] = [
-    {
-      id: "consultanta",
-      title: "Consultanță Financiară",
-      description: "Framework-ul POPO pentru o consultanță financiară adaptată nevoilor tale specifice",
-      services: [
-        {
-          icon: <ChartPieIcon className="w-10 h-10 text-finance-blue" />,
-          title: "Potențial Financiar",
-          description: "Evaluarea detaliată a capacității tale de investiții și optimizarea fluxurilor financiare pentru rezultate maxime."
-        },
-        {
-          icon: <BriefcaseIcon className="w-10 h-10 text-finance-blue" />,
-          title: "Orizont de Timp",
-          description: "Stabilirea perioadelor optime pentru diversele tipuri de investiții, adaptate obiectivelor tale pe termen scurt, mediu și lung."
-        },
-        {
-          icon: <CalculatorIcon className="w-10 h-10 text-finance-blue" />,
-          title: "Profil de Risc",
-          description: "Identificarea și adaptarea strategiilor la apetitul tău pentru risc, pentru un echilibru optim între siguranță și rentabilitate."
-        },
-        {
-          icon: <ShieldCheck className="w-10 h-10 text-finance-blue" />,
-          title: "Obiectiv",
-          description: "Definirea clară a obiectivelor tale financiare și stabilirea pașilor concreți pentru atingerea acestora."
-        }
-      ]
-    },
-    {
-      id: "specializate",
-      title: "Servicii Specializate",
-      description: "Soluții personalizate pentru nevoile tale financiare specifice",
-      services: [
-        {
-          icon: <ChartPieIcon className="w-10 h-10 text-finance-teal" />,
-          title: "Planificare pentru Pensii",
-          description: "Strategii complete pentru asigurarea unui venit stabil la pensie și maximizarea beneficiilor disponibile."
-        },
-        {
-          icon: <BriefcaseIcon className="w-10 h-10 text-finance-teal" />,
-          title: "Venituri Pasive",
-          description: "Dezvoltarea de surse de venit care lucrează pentru tine, cu focus pe investiții și diversificarea portofoliului."
-        },
-        {
-          icon: <CalculatorIcon className="w-10 h-10 text-finance-teal" />,
-          title: "Optimizarea Creditelor",
-          description: "Analiză și restructurare a creditelor existente și soluții pentru închiderea anticipată eficientă."
-        },
-        {
-          icon: <ShieldCheck className="w-10 h-10 text-finance-teal" />,
-          title: "Consultanță în Asigurări",
-          description: "Evaluarea riscurilor și implementarea soluțiilor de asigurare adaptate profilului și nevoilor tale."
-        }
-      ]
-    },
-    {
-      id: "suport",
-      title: "Suport Integrat",
-      description: "Instrumente și asistență continuă pentru investițiile și planificarea ta financiară",
-      services: [
-        {
-          icon: <ChartPieIcon className="w-10 h-10 text-finance-gray" />,
-          title: "Investment Policy Statement",
-          description: "Elaborarea unui IPS complet care definește strategia ta de investiții și obiectivele financiare."
-        },
-        {
-          icon: <BriefcaseIcon className="w-10 h-10 text-finance-gray" />,
-          title: "Template-uri Personalizate",
-          description: "Acces la template-uri profesionale pentru portofoliu și strategii de investiții adaptate situației tale."
-        },
-        {
-          icon: <CalculatorIcon className="w-10 h-10 text-finance-gray" />,
-          title: "Instrumente Analitice",
-          description: "Utilizarea instrumentelor avansate pentru evaluarea companiilor și oportunităților de investiții."
-        },
-        {
-          icon: <ShieldCheck className="w-10 h-10 text-finance-gray" />,
-          title: "Mentenanță Portofoliu",
-          description: "Monitorizare continuă și ajustări proactive ale portofoliului tău pentru optimizarea performanței."
-        }
-      ]
-    }
-  ];
+  const stepsRef = useRef<HTMLDivElement>(null);
+  const objectivesRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -124,29 +27,61 @@ const Services: React.FC = () => {
     );
     
     if (sectionRef.current) observer.observe(sectionRef.current);
+    if (stepsRef.current) observer.observe(stepsRef.current);
+    if (objectivesRef.current) observer.observe(objectivesRef.current);
     
     // Clean up the observer when component unmounts
     return () => observer.disconnect();
   }, []);
-
-  // Reset animation classes when tab changes
-  useEffect(() => {
-    // Short timeout to allow the DOM to update
-    const timer = setTimeout(() => {
-      const cards = document.querySelectorAll('.service-card');
-      cards.forEach((card, index) => {
-        card.classList.add('opacity-0', 'translate-y-10');
-        card.classList.remove('opacity-100', 'translate-y-0');
-        
-        setTimeout(() => {
-          card.classList.add('opacity-100', 'translate-y-0');
-          card.classList.remove('opacity-0', 'translate-y-10');
-        }, 50 + index * 100);
-      });
-    }, 50);
-    
-    return () => clearTimeout(timer);
-  }, [activeTab]);
+  
+  const steps = [
+    {
+      number: 1,
+      title: "Analiză",
+      description: "Analizăm împreună situația ta actuală și obiectivele personale."
+    },
+    {
+      number: 2,
+      title: "Plan",
+      description: "Construim un plan care face sens pentru tine și îl ajustăm cât e nevoie."
+    },
+    {
+      number: 3,
+      title: "Colaborare",
+      description: "Colaborăm pe termen lung – tu evoluezi, eu sunt mereu acolo."
+    }
+  ];
+  
+  const objectives = [
+    {
+      icon: <PiggyBank className="w-6 h-6 text-finance-blue" />,
+      title: "Investiții cu orizont pe termen lung"
+    },
+    {
+      icon: <Wallet className="w-6 h-6 text-finance-blue" />,
+      title: "Independență financiară"
+    },
+    {
+      icon: <Home className="w-6 h-6 text-finance-blue" />,
+      title: "Achiziție locuință"
+    },
+    {
+      icon: <CreditCard className="w-6 h-6 text-finance-blue" />,
+      title: "Închidere anticipată de credit"
+    },
+    {
+      icon: <Baby className="w-6 h-6 text-finance-blue" />,
+      title: "Plan pentru viitorul copilului"
+    },
+    {
+      icon: <Calendar className="w-6 h-6 text-finance-blue" />,
+      title: "Plan pentru pensie"
+    },
+    {
+      icon: <Target className="w-6 h-6 text-finance-blue" />,
+      title: "Bugetare"
+    }
+  ];
   
   return (
     <section id="servicii" className="section">
@@ -156,54 +91,51 @@ const Services: React.FC = () => {
           className="text-center mb-12 opacity-0 translate-y-20 transition-all duration-700"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-finance-blue mb-4">
-            Servicii Oferite
+            Ghidul Tău Financiar Personal – 3 Pași Simpli
           </h2>
-          <p className="text-lg text-finance-gray max-w-3xl mx-auto">
-            Portofoliul de servicii pe care ți-l ofer acoperă întreg spectrul nevoilor tale financiare, de la consultanță personalizată la instrumente specializate
-          </p>
         </div>
         
-        <Tabs defaultValue="consultanta" value={activeTab} onValueChange={setActiveTab} className="w-full max-w-5xl mx-auto">
-          <TabsList className="grid grid-cols-3 mb-8">
-            {servicesData.map((category) => (
-              <TabsTrigger 
-                key={category.id} 
-                value={category.id}
-                className="text-base py-3"
-              >
-                {category.title}
-              </TabsTrigger>
-            ))}
-          </TabsList>
-          
-          {servicesData.map((category) => (
-            <TabsContent key={category.id} value={category.id}>
-              <div className="text-center mb-8">
-                <h3 className="text-2xl font-semibold mb-2">{category.title}</h3>
-                <p className="text-finance-gray">{category.description}</p>
-              </div>
-              
-              <div className="grid md:grid-cols-2 gap-6">
-                {category.services.map((service, idx) => (
-                  <Card 
-                    key={idx}
-                    className="service-card opacity-0 translate-y-10 transition-all duration-500 card-shadow"
-                  >
-                    <CardHeader className="flex flex-row items-center gap-4 pb-2">
-                      <div className="p-2 bg-gray-50 rounded-lg">
-                        {service.icon}
-                      </div>
-                      <CardTitle className="text-xl">{service.title}</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-finance-gray">{service.description}</p>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </TabsContent>
+        {/* Steps Process */}
+        <div 
+          ref={stepsRef}
+          className="grid md:grid-cols-3 gap-8 mb-16 opacity-0 translate-y-20 transition-all duration-700"
+        >
+          {steps.map((step, index) => (
+            <Card key={index} className="text-center border-2 hover:border-finance-blue/50 transition-all duration-300 card-shadow hover:scale-105">
+              <CardHeader>
+                <div className="w-12 h-12 rounded-full bg-finance-blue text-white flex items-center justify-center mx-auto">
+                  <span className="text-xl font-bold">{step.number}</span>
+                </div>
+                <CardTitle className="mt-4">{step.title}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-finance-gray">{step.description}</p>
+              </CardContent>
+            </Card>
           ))}
-        </Tabs>
+        </div>
+        
+        {/* Objectives */}
+        <div
+          ref={objectivesRef}
+          className="mt-20 opacity-0 translate-y-20 transition-all duration-700"
+        >
+          <h3 className="text-2xl font-bold text-center mb-10">În obiective precum:</h3>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {objectives.map((objective, index) => (
+              <div 
+                key={index}
+                className="flex flex-col items-center p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:bg-finance-blue/5"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <div className="p-3 bg-finance-lightGray rounded-full mb-4">
+                  {objective.icon}
+                </div>
+                <h4 className="text-center font-medium">{objective.title}</h4>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

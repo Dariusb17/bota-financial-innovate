@@ -1,11 +1,12 @@
 
 import React, { useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
 import { Linkedin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+
 const About: React.FC = () => {
   const observerRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
+  
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting && observerRef.current) {
@@ -19,12 +20,16 @@ const About: React.FC = () => {
     }, {
       threshold: 0.1
     });
+    
     if (observerRef.current) {
       observer.observe(observerRef.current);
     }
+    
     return () => observer.disconnect();
   }, []);
-  return <section id="despre" className="section">
+  
+  return (
+    <section id="despre" className="section">
       <div className="container mx-auto">
         <div className="flex flex-col lg:flex-row items-center gap-12">
           {/* Image */}
@@ -38,10 +43,17 @@ const About: React.FC = () => {
           {/* Content */}
           <div ref={observerRef} className="lg:w-1/2 opacity-0 translate-y-10 transition-all duration-700">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-finance-blue">Despre Mine</h2>
-            <p className="text-lg mb-4 text-finance-gray">Salut, sunt Alin-Alexandru Bota – consultant financiar, lider de echipă și inovator în domeniul financiar. Experiența acumulată ca Team Leader/Manager la OVB Allfinanz România, cât și studiile în Computer Science la Universitatea Tehnică din Cluj-Napoca m-au învățat cum să transform complexitatea financiară într-o experiență accesibilă.</p>
+            <p className="text-lg mb-4 text-finance-gray">
+              Salut! Sunt Alin-Alexandru Bota, consultant și manager financiar cu peste 2 ani de experiență și peste 100 de oameni care au avut încredere să lucrăm împreună.
+            </p>
+            <p className="text-lg mb-4 text-finance-gray">
+              Cred cu tărie că fiecare persoană merită un plan financiar clar, realist și adaptat vieții sale. Indiferent dacă vrei să investești pe termen lung, să îți cumperi o locuință, să închizi mai repede un credit sau să-ți asiguri un viitor mai bun pentru copilul tău, sunt aici să te ajut.
+            </p>
+            <p className="text-lg mb-4 text-finance-gray">
+              Prin sesiuni personalizate, analizăm pas cu pas situația ta financiară, descoperim soluțiile potrivite pentru tine și punem bazele unui plan pe termen lung – fie că vorbim despre independență financiară, pensie sau bugetarea lunară.
+            </p>
             <p className="text-lg mb-6 text-finance-gray">
-              Cu o abordare personalizată și o pasiune pentru tehnologie, ajut clienții să își optimizeze investițiile și să 
-              își planifice viitorul financiar.
+              Sunt aici să te ghidez, să-ți răspund la întrebări și să construim împreună o viață financiară mai liniștită și mai bine organizată.
             </p>
             <div className="flex items-center gap-4">
               <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 bg-[#0A66C2] text-white rounded-lg hover:bg-[#0A66C2]/90 transition-colors">
@@ -57,6 +69,8 @@ const About: React.FC = () => {
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default About;
