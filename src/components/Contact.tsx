@@ -1,10 +1,15 @@
 
 import React, { useRef, useState } from 'react';
-import { Phone, Mail, Linkedin } from 'lucide-react';
+import { Phone, Mail, Linkedin, Info } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/components/ui/use-toast';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const Contact: React.FC = () => {
   const { toast } = useToast();
@@ -36,7 +41,7 @@ const Contact: React.FC = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
+    // Simulate form submission - this doesn't actually send an email
     setTimeout(() => {
       setIsSubmitting(false);
       if (formRef.current) formRef.current.reset();
@@ -63,7 +68,22 @@ const Contact: React.FC = () => {
         <div className="grid md:grid-cols-2 gap-12 items-start">
           {/* Contact Form */}
           <div className="glass p-8 rounded-2xl shadow-lg">
-            <h3 className="text-2xl font-semibold mb-6 text-finance-blue">Trimite un mesaj</h3>
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-2xl font-semibold text-finance-blue">Trimite un mesaj</h3>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <div className="flex items-center text-finance-gray hover:text-finance-blue cursor-help">
+                    <Info size={18} />
+                  </div>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p className="text-sm max-w-xs">
+                    Acest formular este pentru demonstrație. Pentru a trimite un mesaj real, contactați direct prin email sau telefon.
+                  </p>
+                </TooltipContent>
+              </Tooltip>
+            </div>
+            
             <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-3">
                 <label htmlFor="name" className="block text-sm font-medium text-finance-gray">Nume</label>
