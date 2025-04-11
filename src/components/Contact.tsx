@@ -10,6 +10,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import emailjs from 'emailjs-com';
 
 const Contact: React.FC = () => {
   const { toast } = useToast();
@@ -41,16 +42,39 @@ const Contact: React.FC = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission - this doesn't actually send an email
-    setTimeout(() => {
+    if (!formRef.current) {
       setIsSubmitting(false);
-      if (formRef.current) formRef.current.reset();
-      
-      toast({
-        title: "Mesaj trimis cu succes!",
-        description: "Voi reveni cu un răspuns în cel mai scurt timp posibil.",
+      return;
+    }
+    
+    // Send email using EmailJS
+    emailjs.sendForm(
+      'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
+      'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
+      formRef.current,
+      'YOUR_USER_ID' // Replace with your EmailJS user ID
+    )
+      .then((result) => {
+        console.log('Email sent successfully:', result.text);
+        if (formRef.current) formRef.current.reset();
+        
+        toast({
+          title: "Mesaj trimis cu succes!",
+          description: "Voi reveni cu un răspuns în cel mai scurt timp posibil.",
+        });
+      })
+      .catch((error) => {
+        console.error('Failed to send email:', error);
+        
+        toast({
+          title: "Eroare",
+          description: "Nu am putut trimite mesajul. Vă rugăm să încercați din nou sau să mă contactați direct.",
+          variant: "destructive",
+        });
+      })
+      .finally(() => {
+        setIsSubmitting(false);
       });
-    }, 1500);
   };
   
   return (
@@ -78,7 +102,7 @@ const Contact: React.FC = () => {
                 </TooltipTrigger>
                 <TooltipContent>
                   <p className="text-sm max-w-xs">
-                    Acest formular este pentru demonstrație. Pentru a trimite un mesaj real, contactați direct prin email sau telefon.
+                    Completați formularul pentru a trimite un mesaj direct.
                   </p>
                 </TooltipContent>
               </Tooltip>
