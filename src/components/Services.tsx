@@ -1,6 +1,6 @@
 
 import React, { useEffect, useRef } from 'react';
-import { CheckCircle, Target, Home, PiggyBank, Calendar, Clock, Baby, CreditCard, Wallet } from 'lucide-react';
+import { CheckCircle, Target, Home, PiggyBank, Calendar, Clock, Baby, CreditCard, Wallet, BarChart2 } from 'lucide-react';
 import { 
   Card,
   CardContent,
@@ -80,6 +80,10 @@ const Services: React.FC = () => {
     {
       icon: <Target className="w-6 h-6 text-finance-blue" />,
       title: "Bugetare"
+    },
+    {
+      icon: <BarChart2 className="w-6 h-6 text-finance-blue" />,
+      title: "Diversificare de portofoliu"
     }
   ];
   

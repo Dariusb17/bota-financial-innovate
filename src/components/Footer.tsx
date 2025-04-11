@@ -17,7 +17,7 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="text-xl font-bold mb-4">Alin-Alexandru Bota</h3>
             <p className="text-gray-400 mb-6">
-              Consultant Financiar & Inovator, dedicat transformării complexității financiare în soluții accesibile și personalizate.
+              Consultant & Planificator financiar, dedicat transformării complexității financiare în soluții accesibile și personalizate.
             </p>
             <div className="flex space-x-4">
               <a 

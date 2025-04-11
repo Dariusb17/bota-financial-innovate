@@ -65,19 +65,19 @@ const Testimonials: React.FC = () => {
   
   const testimonials: TestimonialProps[] = [
     {
-      name: "Maria Popescu",
+      name: "Bianca Cozma",
       position: "Profesor",
       text: "Am început să lucrez cu Alin acum 6 luni și deja văd îmbunătățiri în modul în care îmi gestionez economiile. Explică totul clar și răspunde la toate întrebările mele, oricât de banale ar părea.",
       rating: 5
     },
     {
-      name: "Andrei Ionescu",
+      name: "Antoniu Rebeleanu",
       position: "Antreprenor",
       text: "De când colaborez cu Alin, am reușit să-mi închid un credit anticipat și să pun bazele unui portofoliu de investiții solid. Apreciez abordarea personalizată și disponibilitatea lui de a adapta planul când apar schimbări în viața mea.",
       rating: 5
     },
     {
-      name: "Elena Dumitrescu",
+      name: "Ileana Pop",
       position: "Medic",
       text: "Ca persoană ocupată, aveam mereu problema timpului când venea vorba de finanțele personale. Alin mi-a oferit soluții simple și eficiente pentru a-mi atinge obiectivele financiare fără stres.",
       rating: 5

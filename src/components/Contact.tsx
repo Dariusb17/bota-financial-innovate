@@ -1,3 +1,4 @@
+
 import React, { useRef, useState } from 'react';
 import { Phone, Mail, Linkedin, Info } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -48,10 +49,10 @@ const Contact: React.FC = () => {
     
     // Send email using EmailJS
     emailjs.sendForm(
-      'service_b75w3y7', // EmailJS service ID
-      'template_qbun0ra', // EmailJS template ID
+      'service_b75w3y7', 
+      'template_qbun0ra',
       formRef.current,
-      'dNsPF44T9wpPQiV8_' // EmailJS user ID
+      'dNsPF44T9wpPQiV8_' 
     )
       .then((result) => {
         console.log('Email sent successfully:', result.text);
@@ -173,7 +174,7 @@ const Contact: React.FC = () => {
             
             <div className="p-6 bg-finance-blue/10 rounded-xl">
               <h4 className="text-lg font-medium text-finance-blue mb-2">Program consultații</h4>
-              <p className="text-finance-gray mb-1">Luni - Vineri: 09:00 - 18:00</p>
+              <p className="text-finance-gray mb-1">Luni - Vineri: 08:00 - 20:00</p>
               <p className="text-finance-gray">Weekend: Cu programare</p>
             </div>
           </div>
